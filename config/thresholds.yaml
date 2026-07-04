@@ -1,0 +1,50 @@
+# EnvPulse Alert Thresholds Configuration
+
+thresholds:
+  # API probe thresholds
+  api_response_time:
+    dev:
+      warning_ms: 2000
+      critical_ms: 5000
+    staging:
+      warning_ms: 1500
+      critical_ms: 3000
+    production:
+      warning_ms: 1000
+      critical_ms: 2000
+
+  # Failure thresholds
+  failure_rate:
+    dev:
+      warning_percent: 10
+      critical_percent: 25
+    staging:
+      warning_percent: 5
+      critical_percent: 15
+    production:
+      warning_percent: 1
+      critical_percent: 5
+
+  # Uptime thresholds
+  uptime:
+    dev:
+      sla_percent: 95
+      alert_below: 90
+    staging:
+      sla_percent: 98
+      alert_below: 95
+    production:
+      sla_percent: 99.9
+      alert_below: 99
+
+  # Consecutive failure thresholds
+  consecutive_failures:
+    dev: 5
+    staging: 3
+    production: 2
+
+  # Time window for analysis (minutes)
+  analysis_window:
+    dev: 240
+    staging: 120
+    production: 60

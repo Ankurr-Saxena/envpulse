@@ -1,0 +1,146 @@
+# EnvPulse UI Test Configuration
+# Define browser-based synthetic tests using Playwright
+
+tests:
+  # Development environment tests
+  - id: dev-login-flow
+    name: "Dev Login Flow Test"
+    environment: development
+    service: ui
+    url: https://app-dev.example.com/login
+    test_name: "Login and Dashboard"
+    timeout_seconds: 30
+    viewport:
+      width: 1280
+      height: 720
+    steps:
+      - action: navigate
+        url: https://app-dev.example.com/login
+      - action: wait
+        selector: 'input[name="email"]'
+        timeout_ms: 5000
+      - action: fill
+        selector: 'input[name="email"]'
+        value: testuser@example.com
+      - action: fill
+        selector: 'input[name="password"]'
+        value: testpassword123
+      - action: click
+        selector: 'button[type="submit"]'
+      - action: wait_for_navigation
+        timeout_ms: 10000
+      - action: assert_visible
+        selector: '.dashboard'
+      - action: screenshot
+        label: "dashboard"
+
+  - id: dev-search-feature
+    name: "Dev Search Feature Test"
+    environment: development
+    service: ui
+    url: https://app-dev.example.com
+    test_name: "Search Functionality"
+    timeout_seconds: 30
+    steps:
+      - action: navigate
+      - action: wait
+        selector: 'input[placeholder="Search"]'
+        timeout_ms: 5000
+      - action: click
+        selector: 'input[placeholder="Search"]'
+      - action: type
+        selector: 'input[placeholder="Search"]'
+        text: "test query"
+        delay_ms: 100
+      - action: key_press
+        selector: 'input[placeholder="Search"]'
+        key: "Enter"
+      - action: wait
+        selector: '.search-results'
+        timeout_ms: 10000
+      - action: assert_visible
+        selector: '.search-results'
+
+  # Staging environment tests
+  - id: staging-checkout-flow
+    name: "Staging Checkout Flow Test"
+    environment: staging
+    service: ui
+    url: https://app-staging.example.com
+    test_name: "Checkout Process"
+    timeout_seconds: 60
+    steps:
+      - action: navigate
+        url: https://app-staging.example.com/store
+      - action: wait
+        selector: '.product-item'
+        timeout_ms: 5000
+      - action: click
+        selector: '.product-item:first-child'
+      - action: wait
+        selector: '.product-detail'
+        timeout_ms: 5000
+      - action: click
+        selector: 'button[aria-label="Add to Cart"]'
+      - action: wait
+        selector: '.cart-badge'
+        timeout_ms: 5000
+      - action: click
+        selector: 'a[href="/cart"]'
+      - action: wait
+        selector: '.checkout-button'
+        timeout_ms: 5000
+      - action: click
+        selector: '.checkout-button'
+      - action: wait
+        selector: '.checkout-form'
+        timeout_ms: 5000
+      - action: screenshot
+        label: "checkout-form"
+
+  # Production environment tests
+  - id: prod-homepage-load
+    name: "Production Homepage Load Test"
+    environment: production
+    service: ui
+    url: https://example.com
+    test_name: "Homepage Performance"
+    timeout_seconds: 30
+    steps:
+      - action: navigate
+        url: https://example.com
+      - action: wait
+        selector: 'nav'
+        timeout_ms: 10000
+      - action: assert_visible
+        selector: '.hero-section'
+      - action: assert_visible
+        selector: 'footer'
+      - action: screenshot
+        label: "homepage"
+
+  - id: prod-login-flow
+    name: "Production Login Flow Test"
+    environment: production
+    service: ui
+    url: https://example.com/login
+    test_name: "Production Login"
+    timeout_seconds: 30
+    steps:
+      - action: navigate
+        url: https://example.com/login
+      - action: wait
+        selector: '.login-form'
+        timeout_ms: 5000
+      - action: fill
+        selector: 'input[type="email"]'
+        value: demo@example.com
+      - action: fill
+        selector: 'input[type="password"]'
+        value: demopassword
+      - action: click
+        selector: 'button[type="submit"]'
+      - action: wait_for_navigation
+        timeout_ms: 10000
+      - action: assert_visible
+        selector: '.user-dashboard'

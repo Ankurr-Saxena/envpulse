@@ -1,0 +1,115 @@
+# EnvPulse API Probe Configuration
+# Define HTTP/REST endpoints to monitor
+
+probes:
+  # Development environment probes
+  - id: dev-api-health
+    name: "Dev API Health"
+    environment: development
+    service: api
+    url: https://api-dev.example.com/health
+    method: GET
+    timeout_seconds: 10
+    expected_status: 200
+    max_retries: 1
+    retry_delay_seconds: 2
+    validate_response:
+      body_contains: "healthy"
+      json_schema: true
+
+  - id: dev-api-users
+    name: "Dev Users Endpoint"
+    environment: development
+    service: api
+    url: https://api-dev.example.com/api/v1/users
+    method: GET
+    timeout_seconds: 10
+    expected_status: 200
+    headers:
+      Accept: application/json
+    validate_response:
+      json_schema: true
+
+  - id: dev-api-create-user
+    name: "Dev Create User Endpoint"
+    environment: development
+    service: api
+    url: https://api-dev.example.com/api/v1/users
+    method: POST
+    timeout_seconds: 15
+    expected_status: 201
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    body:
+      name: "Test User"
+      email: "test@example.com"
+    validate_response:
+      json_schema: true
+
+  # Staging environment probes
+  - id: staging-api-health
+    name: "Staging API Health"
+    environment: staging
+    service: api
+    url: https://api-staging.example.com/health
+    method: GET
+    timeout_seconds: 10
+    expected_status: 200
+    max_retries: 2
+    validate_response:
+      body_contains: "healthy"
+
+  - id: staging-database-query
+    name: "Staging Database Query"
+    environment: staging
+    service: database
+    url: https://api-staging.example.com/api/v1/status
+    method: GET
+    timeout_seconds: 20
+    expected_status: 200
+    validate_response:
+      headers:
+        Content-Type: "application/json"
+
+  # Production environment probes
+  - id: prod-api-health
+    name: "Production API Health"
+    environment: production
+    service: api
+    url: https://api.example.com/health
+    method: GET
+    timeout_seconds: 10
+    expected_status: 200
+    validate_response:
+      body_contains: "healthy"
+
+  - id: prod-api-users
+    name: "Production Users Endpoint"
+    environment: production
+    service: api
+    url: https://api.example.com/api/v1/users
+    method: GET
+    timeout_seconds: 10
+    expected_status: 200
+    max_retries: 2
+    headers:
+      Accept: application/json
+    auth:
+      type: bearer
+      token: "${API_AUTH_TOKEN}"
+    validate_response:
+      json_schema: true
+
+  - id: prod-api-payment
+    name: "Production Payment API"
+    environment: production
+    service: payments
+    url: https://payments.example.com/api/v1/status
+    method: GET
+    timeout_seconds: 15
+    expected_status: 200
+    auth:
+      type: api_key
+      header: X-API-Key
+      key: "${PAYMENT_API_KEY}"
