@@ -1,0 +1,28 @@
+# EnvPulse Configuration Examples
+# This file shows how to configure environments
+
+environments:
+  development:
+    description: "Development environment - relaxed thresholds"
+    region: "us-east-1"
+    alert_threshold: 5
+    failure_window_minutes: 120
+    slack_channel: "#envpulse-dev"
+    enabled: true
+
+  staging:
+    description: "Staging environment - moderate thresholds"
+    region: "us-east-1"
+    alert_threshold: 3
+    failure_window_minutes: 60
+    slack_channel: "#envpulse-staging"
+    enabled: true
+
+  production:
+    description: "Production environment - strict thresholds"
+    region: "us-east-1"
+    alert_threshold: 2
+    failure_window_minutes: 60
+    slack_channel: "#envpulse-prod-alerts"
+    pagerduty_enabled: true
+    enabled: true
