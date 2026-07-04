@@ -1,0 +1,91 @@
+# EnvPulse
+
+# Dependencies
+venv/
+env/
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# AWS
+.aws/
+aws-cdk.context.json
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+!terraform.tfvars.example
+
+# Config files (keep examples, ignore local configs)
+.env
+config/local/
+config/*.local.yaml
+
+# Logs and temp
+logs/
+*.log
+tmp/
+temp/
+
+# Test coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Deployment artifacts
+lambda/function.zip
+lambda/package/
+
+# Lambda function code zip
+*.zip
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Sample data (can be large)
+sample-signals/data/
+sample-signals/*.csv
+sample-signals/*.parquet
+
+# Athena results
+athena-results/
+query-results/
+
+# Grafana
+grafana/data/
+grafana/plugins/
+
+# Local development
+.venv/
+.env.local
+.env.*.local
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+
+# CI/CD
+.github/workflows/test-*.yml
+.circleci/test-*.yml
+
+# Backup files
+*.bak
+*.backup
+*.orig
