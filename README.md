@@ -289,7 +289,4 @@ This is a **generalized prototype** showcasing architecture and approach. No pro
 
 ## 🆘 Support
 
-- 📧 **Email**: support@envpulse.dev
-- 💬 **Slack**: #envpulse-support
-- 🐛 **Issues**: GitHub Issues
-- 📖 **Wiki**: Project documentation
+- 💬 **LinkedIn**: [Ankurr Saxena](https://www.linkedin.com/in/ankurr-saxena/)
