@@ -10,6 +10,7 @@ EnvPulse is a **cloud-native environment observability platform built on AWS**, 
 - ✅ Trigger intelligent, context-rich alerts
 - ✅ Enable correlation between environments and services
 
+
 ## 🧠 Signal Types
 
 EnvPulse processes multiple signal categories:
